@@ -1,5 +1,11 @@
 <?php
 
-class Pages {
-    
-}
+    class Pages {
+        
+        public function about() {
+            
+        }
+
+    }
+
+?>
