@@ -14,6 +14,7 @@
 
     <?php
         $routes = new Routes();
+        //$routes -> url();
     ?>
     
 </body>
