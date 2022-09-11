@@ -4,6 +4,7 @@ class Routes {
 
     private $controller = 'Pages';
     private $method = 'index';
+    private $parameters = [];
 
     public function __construct()
     {
@@ -27,7 +28,10 @@ class Routes {
             }
         }
 
-        var_dump($this);
+        // Check parameters exist
+        $this -> parameters = $url ? array_values($url) : [];
+        call_user_func_array([$this -> controller, $this -> method], $this -> parameters);
+
     }
 
     private function url() {

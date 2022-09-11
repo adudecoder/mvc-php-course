@@ -2,7 +2,7 @@
 
     class Pages {
         
-        public function about() {
+        public function about($id, $idCity) {
             
         }
 
