@@ -2,12 +2,21 @@
 
 class Routes {
 
+    private $controller = 'Pages';
+
     public function __construct()
     {
-        //echo 'Heyy, first class';
-        $this -> url();
+        $url = $this -> url() ? $this -> url() : [0];
 
-        var_dump($this -> url());
+        if (file_exists('../app/Controllers/'.ucwords($url[0]).'.php')) {
+            $this -> controller = ucwords($url[0]);
+            unset($url[0]);
+        }
+
+        require_once '../app/Controllers/'.$this -> controller.'.php';
+        $this -> controller = new $this -> controller;
+
+        var_dump($this);
     }
 
     private function url() {
