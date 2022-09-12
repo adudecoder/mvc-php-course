@@ -1,5 +1,6 @@
 <?php
     include_once './../app/Lib/Routes.php';
+    include_once './../app/Lib/Controller.php';
 ?>
 
 <!DOCTYPE html>
