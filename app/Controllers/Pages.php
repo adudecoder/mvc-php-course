@@ -3,11 +3,24 @@
     class Pages extends Controller {
 
         public function index() {
-            $this -> view('pages/home');
+
+            $data = [
+                'pageTitle' => 'First Page',
+                'description' => 'Blog'
+            ];
+
+            $this -> view('pages/home', $data);
         }
         
         public function about() {
             
+            $data = [
+                'pageTitle' => 'Page about',
+                'description' => 'about us'
+            ];
+
+            $this -> view('pages/about', $data);
+
         }
 
     }
