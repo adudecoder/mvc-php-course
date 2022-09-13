@@ -11,7 +11,7 @@ include_once './../app/Lib/Controller.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?= APP_NAME ?> </title>
+    <title> <?= APP ?> </title>
 
     <!-- BOOTSRAP CDN -->
     <!-- CSS ONLY -->
@@ -24,7 +24,9 @@ include_once './../app/Lib/Controller.php';
 <body>
 
     <?php
+    include '../app/Views/header.php';
     $routes = new Routes();
+    include '../app/Views/footer.php';
     ?>
 
     <!-- BOOTSRAP CDN -->
