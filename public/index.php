@@ -2,6 +2,8 @@
 include_once './../app/conf.php';
 include_once './../app/Lib/Routes.php';
 include_once './../app/Lib/Controller.php';
+include_once './../app/Lib/Database.php';
+$db = new Database();
 ?>
 
 <!DOCTYPE html>
