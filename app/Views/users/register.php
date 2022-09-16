@@ -6,19 +6,19 @@
             <form name="resgiter" method="POST" action="">
                 <div class="form-group">
                     <label for="name">Name: <sup class="text-danger">*</sup> </label>
-                    <input type="text" name="name" id="name" class="form-control" require>
+                    <input type="text" name="name" id="name" value="<?= $dados['name'] ?>" class="form-control" require>
                 </div>
                 <div class="form-group">
                     <label for="email">Email: <sup class="text-danger">*</sup> </label>
-                    <input type="email" name="email" id="email" class="form-control" require>
+                    <input type="email" name="email" id="email" value="<?= $dados['email'] ?>" class="form-control" require>
                 </div>
                 <div class="form-group">
                     <label for="password">Password: <sup class="text-danger">*</sup> </label>
-                    <input type="password" name="password" id="password" class="form-control" require>
+                    <input type="password" name="password" id="password" value="<?= $dados['password'] ?>" class="form-control" require>
                 </div>
                 <div class="form-group">
                     <label for="password_confirm">Confirm the Password: <sup class="text-danger">*</sup> </label>
-                    <input type="password" name="password_confirm" id="password_confirm" class="form-control" require>
+                    <input type="password" name="password_confirm" id="password_confirm" value="<?= $dados['password_confirm'] ?>" class="form-control" require>
                 </div>
 
                 <div class="row">
