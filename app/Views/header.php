@@ -17,7 +17,7 @@
                 </ul>
 
                 <span class="navbar-text">
-                    <a href="" class="btn btn-info" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
+                    <a href="<?= URL ?>/users/register" class="btn btn-info" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
                     <a href="" class="btn btn-info" data-tooltip="tooltip" title="Already have an account? Login">Login</a>
                 </span>
             </div>
