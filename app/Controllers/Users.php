@@ -44,7 +44,9 @@ class Users extends Controller
                 if (Check::checkName($form['name'])) {
                     $dados['error_name'] = 'Form name is invalid';
                 } else if (Check::checkEmail($form['email'])) {
-                    $dados['error_name'] = 'Email is invalid';
+                    $dados['error_email'] = 'Email is invalid';
+                } else if ($this->userModel->checkEmail($form['email'])) {
+                    $dados['error_email'] = 'The email provided is already registered';
                 }
 
                 if (strlen($form['password']) < 6) {
