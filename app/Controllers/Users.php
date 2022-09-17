@@ -6,7 +6,8 @@ class Users extends Controller
     public function register()
     {
 
-        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        // FILTER_SANITIZE_STRING deprecated
+        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (isset($form)) {
             $dados = [
@@ -46,9 +47,19 @@ class Users extends Controller
                 } else if ($form['password'] != $form['password_confirm']) {
                     $dados['error_password_confirm'] = 'The passwords are different';
                 } else {
+
+                    $dados['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
+
                     echo 'You can register<hr>';
                 }
             }
+
+            // echo 'Original password: '.$form['password'].'<hr>';
+            // echo 'md5 password: '.md5($form['password']).'<hr>';
+            // echo 'sha1 password: '.sha1($form['password']).'<hr>';
+
+            // $securePassword = password_hash($form['password'], PASSWORD_DEFAULT);
+            // echo 'Hash password: '.$securePassword.'<hr>';
 
             var_dump($form);
         } else {

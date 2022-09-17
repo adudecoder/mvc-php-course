@@ -1,7 +1,9 @@
 <div class="col-xl-4 col-md-6 mx-auto p-5">
     <div class="card">
         <div class="card-body">
-            <h2>Register</h2>
+            <div class="input-group-text d-flex justify-content-center">
+                <h2>Register</h2>
+            </div>
             <small>Fill in the form below to register</small>
             <form name="resgiter" method="POST" action="">
                 <div class="form-group">
