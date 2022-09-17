@@ -34,6 +34,13 @@ class Users extends Controller
                     $dados['error_password_confirm'] = 'Confirm password';
                 }
             } else {
+
+                if (Check::checkName($form['name'])) {
+                    $dados['error_name'] = 'Form name is invalid';
+                } else if (Check::checkEmail($form['email'])) {
+                    $dados['error_name'] = 'Email is invalid';
+                }
+
                 if (strlen($form['password']) < 6) {
                     $dados['error_password'] = 'Password must be at least 6 characters long';
                 } else if ($form['password'] != $form['password_confirm']) {

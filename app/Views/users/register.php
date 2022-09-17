@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email: <sup class="text-danger">*</sup> </label>
-                    <input type="email" name="email" id="email" value="<?= $dados['email'] ?>" class="form-control <?= $dados['error_email'] ? 'is-invalid' : '' ?>">
+                    <input type="text" name="email" id="email" value="<?= $dados['email'] ?>" class="form-control <?= $dados['error_email'] ? 'is-invalid' : '' ?>">
                     <div class="invalid-feedback">
                         <?= $dados['error_email'] ?>
                     </div>
