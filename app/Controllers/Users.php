@@ -3,6 +3,11 @@
 class Users extends Controller
 {
 
+    public function __construct()
+    {
+        $this->userModel = $this->model('User');
+    }
+
     public function register()
     {
 
@@ -50,7 +55,13 @@ class Users extends Controller
 
                     $dados['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
 
-                    echo 'You can register<hr>';
+                    if ($this->userModel->store($dados)) {
+                        echo 'Successfully registered<hr>';
+                    } else {
+                        die("Error storing user in database");
+                    }
+
+                    // echo 'Successfully registered<hr>';
                 }
             }
 
