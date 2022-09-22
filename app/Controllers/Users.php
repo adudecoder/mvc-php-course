@@ -74,16 +74,70 @@ class Users extends Controller
             // $securePassword = password_hash($form['password'], PASSWORD_DEFAULT);
             // echo 'Hash password: '.$securePassword.'<hr>';
 
-            var_dump($form);
         } else {
             $dados = [
                 'name' => '',
                 'email' => '',
                 'password' => '',
                 'password_confirm' => '',
+                'error_name' => '',
+                'error_email' => '',
+                'error_password' => '',
+                'error_password_confirm' => '',
             ];
         }
 
         $this->view('users/register', $dados);
+    }
+
+    public function login()
+    {
+
+        // FILTER_SANITIZE_STRING deprecated
+        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (isset($form)) {
+            $dados = [
+                'email' => trim($form['email']),
+                'password' => trim($form['password']),
+            ];
+
+            if (in_array('', $form)) {
+
+                if (empty($form['email'])) {
+                    $dados['error_email'] = 'Fill in the email field';
+                }
+
+                if (empty($form['password'])) {
+                    $dados['error_password'] = 'Fill in the password field';
+                }
+            } else {
+
+                if (Check::checkEmail($form['email'])) {
+                    $dados['error_email'] = 'Email is invalid';
+                } else {
+
+                    echo 'login!';
+                }
+            }
+
+            // echo 'Original password: '.$form['password'].'<hr>';
+            // echo 'md5 password: '.md5($form['password']).'<hr>';
+            // echo 'sha1 password: '.sha1($form['password']).'<hr>';
+
+            // $securePassword = password_hash($form['password'], PASSWORD_DEFAULT);
+            // echo 'Hash password: '.$securePassword.'<hr>';
+
+            var_dump($form);
+        } else {
+            $dados = [
+                'email' => '',
+                'password' => '',
+                'error_email' => '',
+                'error_password' => '',
+            ];
+        }
+
+        $this->view('users/login', $dados);
     }
 }
