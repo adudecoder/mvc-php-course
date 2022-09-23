@@ -117,7 +117,14 @@ class Users extends Controller
                     $dados['error_email'] = 'Email is invalid';
                 } else {
 
-                    echo 'login!';
+                    $checkLogin = $this->userModel->checkLogin($form['email'], $form['password']);
+
+                    if ($checkLogin) {
+                        echo 'logged in user, can create the session<hr>';
+                    } else {
+                        echo 'username or password is invalid<hr>';
+                    }
+
                 }
             }
 

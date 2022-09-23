@@ -35,4 +35,23 @@ class User
             return false;
         }
     }
+
+    public function checkLogin($email, $password) {
+        $this->db->query("SELECT email, password FROM users WHERE email = :e");
+        $this->db->bind(":e", $email);
+
+        if ($this->db->result()) {
+            
+            $result = $this->db->result();
+
+            if (password_verify($password, $result->password)) {
+                return $result;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
 }
