@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once './../app/conf.php';
 include_once './../app/autoload.php';
 // include_once './../app/Lib/Controller.php';

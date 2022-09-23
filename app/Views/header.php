@@ -12,14 +12,22 @@
                         <a href="<?= URL ?>" class="nav-link" data-tooltip="tooltip" title="Fisrt Page">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a href="#" class="nav-link" data-tooltip="tooltip" title="About Us">About Us</a>
+                        <a href="#" class="nav-link" data-tooltip="tooltip" title="About Us">About Us</a>
                     </li>
                 </ul>
 
-                <span class="navbar-text">
-                    <a href="<?= URL ?>/users/register" class="btn btn-info" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
-                    <a href="<?= URL ?>/users/login" class="btn btn-info" data-tooltip="tooltip" title="Already have an account? Login">Login</a>
-                </span>
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                    <span class="navbar-text">
+                        <p>Hey, <?= $_SESSION['user_name'] ?>, Welcome</p>
+                        <a class="btn btn-sm btn-danger" href="<?= URL ?>/users/logout">logout</a>
+                    </span>
+                <?php else : ?>
+                    <span class="navbar-text">
+                        <a href="<?= URL ?>/users/register" class="btn btn-info" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
+                        <a href="<?= URL ?>/users/login" class="btn btn-info" data-tooltip="tooltip" title="Already have an account? Login">Login</a>
+                    </span>
+                <?php endif; ?>
+
             </div>
         </nav>
     </div>

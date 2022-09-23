@@ -117,10 +117,10 @@ class Users extends Controller
                     $dados['error_email'] = 'Email is invalid';
                 } else {
 
-                    $checkLogin = $this->userModel->checkLogin($form['email'], $form['password']);
+                    $user = $this->userModel->checkLogin($form['email'], $form['password']);
 
-                    if ($checkLogin) {
-                        echo 'logged in user, can create the session<hr>';
+                    if ($user) {
+                        $this->createSessionUser($user);
                     } else {
                         echo 'username or password is invalid<hr>';
                     }
@@ -135,7 +135,6 @@ class Users extends Controller
             // $securePassword = password_hash($form['password'], PASSWORD_DEFAULT);
             // echo 'Hash password: '.$securePassword.'<hr>';
 
-            var_dump($form);
         } else {
             $dados = [
                 'email' => '',
@@ -146,5 +145,19 @@ class Users extends Controller
         }
 
         $this->view('users/login', $dados);
+    }
+
+    private function createSessionUser($user) {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_name'] = $user->name;
+        $_SESSION['user_email'] = $user->email;
+    }
+
+    public function logout() {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_email']);
+
+        session_destroy();
     }
 }

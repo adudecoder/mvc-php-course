@@ -37,7 +37,7 @@ class User
     }
 
     public function checkLogin($email, $password) {
-        $this->db->query("SELECT email, password FROM users WHERE email = :e");
+        $this->db->query("SELECT * FROM users WHERE email = :e");
         $this->db->bind(":e", $email);
 
         if ($this->db->result()) {
