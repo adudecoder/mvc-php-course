@@ -1,6 +1,9 @@
 <div class="col-xl-4 col-md-6 mx-auto p-5">
     <div class="card">
         <div class="card-body">
+
+            <?= Session::msgAlert('user') ?>
+
             <div class="card-header bg-secondary text-white input-group-text d-flex justify-content-center">
                 <h2>Login</h2>
             </div>

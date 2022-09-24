@@ -58,7 +58,8 @@ class Users extends Controller
                     $dados['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
 
                     if ($this->userModel->store($dados)) {
-                        echo 'Successfully registered<hr>';
+                        Session::msgAlert('user','Successfully registered');
+                        header('Location: '.URL.'');
                     } else {
                         die("Error storing user in database");
                     }
@@ -122,7 +123,7 @@ class Users extends Controller
                     if ($user) {
                         $this->createSessionUser($user);
                     } else {
-                        echo 'username or password is invalid<hr>';
+                        Session::msgAlert('user','username or password is invalid','alert alert-danger');
                     }
 
                 }
