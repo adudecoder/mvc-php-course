@@ -59,7 +59,7 @@ class Users extends Controller
 
                     if ($this->userModel->store($dados)) {
                         Session::msgAlert('user','Successfully registered');
-                        header('Location: '.URL.'');
+                        URL::redirection('users/login');
                     } else {
                         die("Error storing user in database");
                     }
@@ -152,6 +152,8 @@ class Users extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_email'] = $user->email;
+
+        URL::redirection('pages/home');
     }
 
     public function logout() {
@@ -160,5 +162,7 @@ class Users extends Controller
         unset($_SESSION['user_email']);
 
         session_destroy();
+
+        URL::redirection('users/login');
     }
 }
