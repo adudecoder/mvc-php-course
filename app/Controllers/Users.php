@@ -153,7 +153,7 @@ class Users extends Controller
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_email'] = $user->email;
 
-        URL::redirection('pages/home');
+        URL::redirection('posts');
     }
 
     public function logout() {
