@@ -8,7 +8,7 @@
     </nav>
 
     <div class="card">
-        <div class="card-body">
+        <div class="card-body bg-light">
 
             <div class="card-header bg-secondary text-white input-group-text d-flex justify-content-center">
                 Register Post
@@ -16,15 +16,15 @@
 
             <form name="resgiter" method="POST" action="<?= URL ?>/posts/register" class="mt-4">
                 <div class="form-group">
-                    <label for="title">Title: <sup class="text-danger">*</sup> </label>
+                    <label for="title">title: <sup class="text-danger">*</sup> </label>
                     <input type="text" name="title" id="title" value="<?= $dados['title'] ?>" class="form-control <?= $dados['error_title'] ? 'is-invalid' : '' ?>">
                     <div class="invalid-feedback">
                         <?= $dados['error_title'] ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="text">Text: <sup class="text-danger">*</sup> </label>
-                    <textarea name="text" id="text" class="form-control <?= $dados['error_text'] ? 'is-invalid' : '' ?>"><?= $dados['text'] ?></textarea>
+                    <label for="text">text: <sup class="text-danger">*</sup> </label>
+                    <textarea name="text" id="text" class="form-control <?= $dados['error_text'] ? 'is-invalid' : '' ?>" rows="5"><?= $dados['text'] ?></textarea>
                     <div class="invalid-feedback">
                         <?= $dados['error_text'] ?>
                     </div>

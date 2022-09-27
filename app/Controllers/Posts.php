@@ -8,6 +8,9 @@ class Posts extends Controller
         if (!Session::loggedInUser()) {
             URL::redirection('users/login');
         }
+
+        $this->postModel = $this->model('Post');
+
     }
 
     public function index()
@@ -25,7 +28,8 @@ class Posts extends Controller
         if (isset($form)) {
             $dados = [
                 'title' => trim($form['title']),
-                'text' => trim($form['text'])
+                'text' => trim($form['text']),
+                'id_user' => $_SESSION['user_id']
             ];
 
             if (in_array('', $form)) {
@@ -39,7 +43,12 @@ class Posts extends Controller
                 }
 
             } else {
-                echo 'Can register post';
+                if ($this->postModel->store($dados)) {
+                    Session::msgAlert('post','Successfully post registered');
+                    URL::redirection('posts');
+                } else {
+                    die("Error storing post in database");
+                }
             }
         } else {
             $dados = [

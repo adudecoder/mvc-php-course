@@ -1,5 +1,7 @@
 <div class="container py-5">
 
+    <?= Session::msgAlert('post') ?>
+
     <div class="card">
 
         <div class="card-header bg-info text-white">

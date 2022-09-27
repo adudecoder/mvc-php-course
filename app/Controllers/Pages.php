@@ -4,6 +4,10 @@
 
         public function index() {
 
+            if (Session::loggedInUser()) {
+                URL::redirection('posts');
+            }
+
             $data = [
                 'pageTitle' => 'First Page',
                 'description' => 'Blog'
