@@ -20,10 +20,10 @@
                     <div class="card-body">
                         <!-- <h5 class="card-title">Special title treatment</h5> -->
                         <p class="card-text"><?= $post->text ?></p>
-                        <a href="#" class="btn btn-primary float-right">Read more</a>
+                        <a href="<?= URL.'/posts/show/'.$post->postID ?>" class="btn btn-primary float-right">Read more...</a>
                     </div>
                     <div class="card-footer text-muted">
-                        Written by: <?= $post->name ?> <?= date('d/m/Y H:i', strtotime($post->postRegistrationDate)) ?>
+                        <small>Written by: <?= $post->name ?> <?= Check::dateBr($post->postRegistrationDate) ?></small>
                     </div>
                 </div>
             <?php endforeach ?>

@@ -10,6 +10,7 @@ class Posts extends Controller
         }
 
         $this->postModel = $this->model('Post');
+        $this->userModel = $this->model('User');
 
     }
 
@@ -64,5 +65,17 @@ class Posts extends Controller
         }
 
         $this->view('posts/register', $dados);
+    }
+
+    public function show($id) {
+        $post = $this->postModel->readPostById($id);
+        $user = $this->userModel->readUserById($post->id_user);
+
+        $dados = [
+            'post' => $post,
+            'user' => $user
+        ];
+
+        $this->view('posts/show', $dados);
     }
 }

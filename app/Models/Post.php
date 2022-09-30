@@ -19,7 +19,8 @@ class Post
         users.created_in as userResgistrationData
          FROM posts
          INNER JOIN users ON
-         posts.id_user = users.id");
+         posts.id_user = users.id
+         ORDER BY posts.id DESC");
         return $this->db->results();
     }
 
@@ -36,5 +37,12 @@ class Post
         } else {
             return false;
         }
+    }
+
+    public function readPostById($id) {
+        $this->db->query("SELECT * FROM posts WHERE id = :id");
+        $this->db->bind('id', $id);
+
+        return $this->db->result();
     }
 }

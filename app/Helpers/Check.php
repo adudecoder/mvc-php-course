@@ -20,4 +20,12 @@ class Check {
         }
     }
 
+    public static function dateBr($date) {
+        if (isset($date)) {
+            return date('d/m/Y H:i', strtotime($date));
+        } else {
+            return false;
+        }
+    }
+
 }
