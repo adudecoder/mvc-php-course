@@ -67,6 +67,53 @@ class Posts extends Controller
         $this->view('posts/register', $dados);
     }
 
+    public function edit($id)
+    {
+
+        // FILTER_SANITIZE_STRING deprecated
+        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (isset($form)) {
+            $dados = [
+                'id' => $id,
+                'title' => trim($form['title']),
+                'text' => trim($form['text'])
+            ];
+
+            if (in_array('', $form)) {
+
+                if (empty($form['name'])) {
+                    $dados['error_title'] = 'Fill in the title field';
+                }
+
+                if (empty($form['email'])) {
+                    $dados['error_text'] = 'Fill in the text field';
+                }
+
+            } else {
+                if ($this->postModel->store($dados)) {
+                    Session::msgAlert('post','Post successfully updated');
+                    URL::redirection('posts');
+                } else {
+                    die("Error updating post");
+                }
+            }
+        } else {
+
+            $post = $this->postModel->readPostById($id);
+
+            $dados = [
+                'id' => $post->id,
+                'title' => $post->title,
+                'text' => $post->text,
+                'error_title' => '',
+                'error_text' => ''
+            ];
+        }
+
+        $this->view('posts/edit', $dados);
+    }
+
     public function show($id) {
         $post = $this->postModel->readPostById($id);
         $user = $this->userModel->readUserById($post->id_user);

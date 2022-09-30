@@ -15,8 +15,13 @@
             <p class="card-text"><?= $dados['post']->text ?></p>
         </div>
         <div class="card-footer text-muted">
-            Written by: <?= $dados['user']->name ?> <?= Check::dateBr($dados['post']->created_in) ?>
+            <small><?= $dados['user']->name ?> <?= Check::dateBr($dados['post']->created_in) ?></small>
         </div>
+
+        <?php if($dados['post']->id_user == $_SESSION['user_id']): ?>
+            <a href="<?= URL.'/posts/edit/'.$dados['post']->id ?>" class="btn btn-sm btn-primary">Editar</a>
+        <?php endif ?>
+
     </div>
 
 </div>
