@@ -10,6 +10,19 @@ class Post
         $this->db = new Database();
     }
 
+    public function readPosts()
+    {
+        $this->db->query("SELECT *,
+        posts.id as postID,
+        posts.created_in as postRegistrationDate,
+        users.id as userId,
+        users.created_in as userResgistrationData
+         FROM posts
+         INNER JOIN users ON
+         posts.id_user = users.id");
+        return $this->db->results();
+    }
+
     public function store($dados)
     {
 
