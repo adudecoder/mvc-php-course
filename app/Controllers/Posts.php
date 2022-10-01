@@ -11,7 +11,6 @@ class Posts extends Controller
 
         $this->postModel = $this->model('Post');
         $this->userModel = $this->model('User');
-
     }
 
     public function index()
@@ -46,10 +45,9 @@ class Posts extends Controller
                 if (empty($form['email'])) {
                     $dados['error_text'] = 'Fill in the text field';
                 }
-
             } else {
                 if ($this->postModel->store($dados)) {
-                    Session::msgAlert('post','Successfully post registered');
+                    Session::msgAlert('post', 'Successfully post registered');
                     URL::redirection('posts');
                 } else {
                     die("Error storing post in database");
@@ -89,10 +87,9 @@ class Posts extends Controller
                 if (empty($form['email'])) {
                     $dados['error_text'] = 'Fill in the text field';
                 }
-
             } else {
                 if ($this->postModel->store($dados)) {
-                    Session::msgAlert('post','Post successfully updated');
+                    Session::msgAlert('post', 'Post successfully updated');
                     URL::redirection('posts');
                 } else {
                     die("Error updating post");
@@ -101,6 +98,11 @@ class Posts extends Controller
         } else {
 
             $post = $this->postModel->readPostById($id);
+
+            if ($post->id_user != $_SESSION['id_user']) {
+                Session::msgAlert('post', 'You are not authorized to edit this post', 'alert alert-danger');
+                URL::redirection('posts');
+            }
 
             $dados = [
                 'id' => $post->id,
@@ -114,7 +116,8 @@ class Posts extends Controller
         $this->view('posts/edit', $dados);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $post = $this->postModel->readPostById($id);
         $user = $this->userModel->readUserById($post->id_user);
 
