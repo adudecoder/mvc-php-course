@@ -129,17 +129,38 @@ class Posts extends Controller
         $this->view('posts/show', $dados);
     }
 
-    public function delete($id) {
-        $id = (int) $id;
+    public function delete($id)
+    {
 
-        if (is_int($id)) {
-            if ($this->postModel->destroy($id)) {
-                Session::msgAlert('post', 'Post deleted successfully');
+        if (!$this->checkAutorization($id)) {
+
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            $method = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
+
+            if ($id && $method == 'POST') {
+                if ($this->postModel->destroy($id)) {
+                    Session::msgAlert('post', 'Post deleted successfully');
+                    URL::redirection('posts');
+                }
+            } else {
+                Session::msgAlert('post', 'You are not authorized to delete this post', 'alert alert-danger');
                 URL::redirection('posts');
             }
+        } else {
+            Session::msgAlert('post', 'You are not authorized to delete this post', 'alert alert-danger');
+            URL::redirection('posts');
         }
-
-        var_dump($id);
     }
 
+    private function checkAutorization($id)
+    {
+        $post = $this->postModel->readPostById($id);
+
+        if ($post->id_user != $_SESSION['id_user']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
