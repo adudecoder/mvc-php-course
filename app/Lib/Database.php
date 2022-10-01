@@ -3,11 +3,11 @@
 class Database
 {
 
-    private $host = 'localhost';
-    private $user = 'root';
-    private $password = '';
-    private $db = 'base_data_mvc';
-    private $port = '3306';
+    private $host = DB['HOST'];
+    private $user = DB['USER'];
+    private $password = DB['PASSWORD'];
+    private $db = DB['DBNAME'];
+    private $port = DB['PORT'];
     private $dbh;
     private $stmt;
 
