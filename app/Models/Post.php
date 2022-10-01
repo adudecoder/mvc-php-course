@@ -55,10 +55,25 @@ class Post
         }
     }
 
-    public function readPostById($id) {
+    public function readPostById($id)
+    {
         $this->db->query("SELECT * FROM posts WHERE id = :id");
         $this->db->bind('id', $id);
 
         return $this->db->result();
+    }
+
+    public function destroy($id)
+    {
+
+        $this->db->query("DELETE FROM posts WHERE id = :id");
+
+        $this->db->bind("id", $id);
+
+        if ($this->db->exec()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

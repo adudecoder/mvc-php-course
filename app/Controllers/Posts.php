@@ -128,4 +128,18 @@ class Posts extends Controller
 
         $this->view('posts/show', $dados);
     }
+
+    public function delete($id) {
+        $id = (int) $id;
+
+        if (is_int($id)) {
+            if ($this->postModel->destroy($id)) {
+                Session::msgAlert('post', 'Post deleted successfully');
+                URL::redirection('posts');
+            }
+        }
+
+        var_dump($id);
+    }
+
 }
