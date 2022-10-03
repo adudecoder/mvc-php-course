@@ -2,6 +2,7 @@
 session_start();
 
 include_once './../app/conf.php';
+include_once './../app/phperror.php';
 include_once './../app/autoload.php';
 // include_once './../app/Lib/Controller.php';
 // include_once './../app/Lib/Database.php';
